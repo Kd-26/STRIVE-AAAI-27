@@ -1,0 +1,48 @@
+{
+  "protocol_version": "strive-react-v11",
+  "seed": 42,
+  "task_set": {
+    "math500_count": 200,
+    "olympiadbench_text_math_count": 100,
+    "smoke_count": 5,
+    "selection": "deterministic balanced sampling by dataset, subject, and where available level"
+  },
+  "controller": {
+    "max_steps": 6,
+    "max_tool_actions": 4,
+    "max_output_tokens_per_step": 2048,
+    "temperature": 0.0,
+    "sandbox_timeout_seconds": 20,
+    "sandbox_memory_mb": 3072
+  },
+  "generation_models": [
+    {"name": "ministral-14b", "provider": "nvidia", "id": "mistralai/ministral-14b-instruct-2512", "key_env": "NVIDIA_API_KEY_1", "rpm": 12},
+    {"name": "glm-5.2", "provider": "nvidia", "id": "z-ai/glm-5.2", "key_env": "NVIDIA_API_KEY_2", "rpm": 6},
+    {"name": "minimax-m3", "provider": "nvidia", "id": "minimaxai/minimax-m3", "key_env": "NVIDIA_API_KEY_3", "rpm": 12},
+    {"name": "nemotron-3-nano", "provider": "nvidia", "id": "nvidia/nemotron-3-nano-30b-a3b", "key_env": "NVIDIA_API_KEY_4", "rpm": 20},
+    {"name": "gpt-oss-20b", "provider": "nvidia", "id": "openai/gpt-oss-20b", "key_env": "NVIDIA_API_KEY_5", "rpm": 12},
+    {"name": "gpt-5-nano", "provider": "openai", "id": "gpt-5-nano", "key_env": "OPENAI_API_KEY", "rpm": 60}
+  ],
+  "step_evaluators": {
+    "prms": [
+      {"id": "peiyi9979/math-shepherd-mistral-7b-prm", "name": "Math-Shepherd PRM"},
+      {"id": "Qwen/Qwen2.5-Math-PRM-7B", "revision": "0610740060112df12585d00a1c5f4624d2f59051", "name": "Qwen2.5-Math PRM"}
+    ],
+    "critic": {"id": "stepfun-ai/step-3.5-flash", "provider": "nvidia", "use": "selective near-boundary steps only"}
+  },
+  "correctness": {
+    "deterministic_first": true,
+    "fallback_judge": "stepfun-ai/step-3.5-flash",
+    "grounding": "deterministic final-answer provenance relation to successful sandbox output"
+  },
+  "step_score_weights": {
+    "prm": 0.45,
+    "critic": 0.25,
+    "tool_gain": 0.15,
+    "redundancy": -0.25,
+    "deterministic_error": -0.5
+  },
+  "trace_metric_policy": {
+    "gpt_oss_20b": "operational metrics only; trace-derived metrics are NA because provider reasoning was not reliably aligned to visible controller actions"
+  }
+}

@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the associated STRIVE paper."
+title: "STRIVE: Auditing Execution Enabled Reasoning Agents Beyond Accuracy"
+type: software
+version: "1.0.0"
+date-released: 2026-07-30

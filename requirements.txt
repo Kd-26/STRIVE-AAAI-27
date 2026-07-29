@@ -1,0 +1,18 @@
+# Notebook 01 generation and first-pass evaluation
+openai>=1.68,<3
+datasets>=3.2,<5
+transformers>=4.46,<5
+accelerate>=1.2
+bitsandbytes>=0.45
+sentence-transformers>=3.3
+math-verify>=0.7
+antlr4-python3-runtime==4.11.*
+sympy
+scipy
+pandas
+matplotlib
+seaborn
+tqdm
+tiktoken
+jupyterlab
+ipykernel

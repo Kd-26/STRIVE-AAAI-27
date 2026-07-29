@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+outputs/
+checkpoints/
+*.log
+artifacts/downloaded/
+data/raw/
+data/*.zip
+!data/sample/
+!data/sample/batch01_generation.zip
